@@ -6,17 +6,19 @@ Plateforme complète d'analyse de données e-commerce basée sur MongoDB, Node.j
 > Encadré par Pr. Zaidouni Dounia
 
 ---
-
 ## 🏗️ Architecture
-┌─────────────────────────────────────────────────────┐
-│                                                     │
-│  ┌──────────────┐   ┌──────────────┐   ┌─────────┐ │
-│  │   MongoDB    │◄──│  Node.js +   │◄──│Dashboard│ │
-│  │  (données)   │   │  Express API │   │Chart.js │ │
-│  └──────────────┘   └──────────────┘   └─────────┘ │
-│                                                     │
-│  └─────────────── Docker Compose ─────────────────┘ │
-└─────────────────────────────────────────────────────┘
+
+| Composant | Rôle | Port |
+|---|---|---|
+| 🗄️ **MongoDB** | Stockage des 50 000+ documents | 27017 |
+| ⚙️ **Node.js + Express** | API REST — expose les analyses | 3000 |
+| 🔧 **Data Generator** | Génère les données au premier lancement | - |
+| 📊 **Dashboard** | Interface de visualisation Chart.js | 8080 |
+
+**Flux des données :**
+MongoDB  ←→  Node.js / Express API  ←→  Dashboard (navigateur)
+
+> Tous les services sont orchestrés par **Docker Compose** et lancés avec une seule commande.
 
 ---
 
@@ -57,37 +59,29 @@ docker-compose up --build
 | POST | `/api/indexes/create` | Créer les index |
 
 ---
-
 ## 📁 Structure du projet
+
+```text
 ecommerce-analytics/
-│
 ├── docker-compose.yml
 ├── README.md
-│
 ├── backend/
 │   ├── Dockerfile
 │   ├── server.js
 │   └── src/
-│       ├── config/
-│       │   ├── db.js
-│       │   ├── indexes.js
-│       │   └── performance.js
-│       ├── routes/
-│       ├── controllers/
-│       └── aggregations/
-│
+│       ├── config/        (db.js, indexes.js, performance.js)
+│       ├── routes/        (revenue.js, products.js, customers.js)
+│       ├── controllers/   (logique metier)
+│       └── aggregations/  (pipelines MongoDB)
 ├── data-generator/
 │   ├── Dockerfile
 │   └── generate.js
-│
 └── frontend/
-├── Dockerfile
-├── index.html
-├── css/style.css
-└── js/
-├── api.js
-├── charts.js
-└── main.js
+    ├── Dockerfile
+    ├── index.html
+    ├── css/style.css
+    └── js/  (api.js, charts.js, main.js)
+```
 
 ---
 
