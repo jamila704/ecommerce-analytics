@@ -2,10 +2,95 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>E-commerce Analytics</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
-    <h1>📊 E-commerce Analytics Dashboard</h1>
-    <p>Le dashboard est en cours de construction...</p>
+
+    <!-- ── HEADER ─────────────────────────────────────── -->
+    <header>
+        <div class="header-content">
+            <h1>📊 E-commerce Analytics</h1>
+            <span id="last-updated"></span>
+        </div>
+    </header>
+
+    <main>
+
+        <!-- ── KPI CARDS ──────────────────────────────── -->
+        <section class="kpi-grid">
+            <div class="kpi-card">
+                <div class="kpi-icon">💰</div>
+                <div class="kpi-info">
+                    <span class="kpi-label">Chiffre d'affaires total</span>
+                    <span class="kpi-value" id="total-revenue">...</span>
+                </div>
+            </div>
+            <div class="kpi-card">
+                <div class="kpi-icon">🛒</div>
+                <div class="kpi-info">
+                    <span class="kpi-label">Commandes livrées</span>
+                    <span class="kpi-value" id="total-orders">...</span>
+                </div>
+            </div>
+            <div class="kpi-card">
+                <div class="kpi-icon">👥</div>
+                <div class="kpi-info">
+                    <span class="kpi-label">Clients uniques</span>
+                    <span class="kpi-value" id="total-customers">...</span>
+                </div>
+            </div>
+            <div class="kpi-card">
+                <div class="kpi-icon">🧺</div>
+                <div class="kpi-info">
+                    <span class="kpi-label">Panier moyen</span>
+                    <span class="kpi-value" id="avg-basket">...</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- ── GRAPHIQUES LIGNE 1 ──────────────────────── -->
+        <section class="charts-grid">
+            <div class="chart-card large">
+                <h2>📅 Chiffre d'affaires mensuel 2024</h2>
+                <canvas id="chart-revenue-monthly"></canvas>
+            </div>
+            <div class="chart-card">
+                <h2>🏷️ Ventes par catégorie</h2>
+                <canvas id="chart-categories"></canvas>
+            </div>
+        </section>
+
+        <!-- ── GRAPHIQUES LIGNE 2 ──────────────────────── -->
+        <section class="charts-grid">
+            <div class="chart-card">
+                <h2>🏆 Top 10 produits</h2>
+                <canvas id="chart-top-products"></canvas>
+            </div>
+            <div class="chart-card">
+                <h2>📍 Ventes par ville</h2>
+                <canvas id="chart-cities"></canvas>
+            </div>
+        </section>
+
+        <!-- ── GRAPHIQUES LIGNE 3 ──────────────────────── -->
+        <section class="charts-grid">
+            <div class="chart-card">
+                <h2>👤 Segments clients</h2>
+                <canvas id="chart-segments"></canvas>
+            </div>
+            <div class="chart-card">
+                <h2>🚚 Performance livraisons</h2>
+                <canvas id="chart-delivery"></canvas>
+            </div>
+        </section>
+
+    </main>
+
+    <script src="js/api.js"></script>
+    <script src="js/charts.js"></script>
+    <script src="js/main.js"></script>
 </body>
 </html>
